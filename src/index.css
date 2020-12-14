@@ -20,3 +20,9 @@ code {
 .upload-form-header{
   text-align: center
 }
+
+.loading{
+  display: flex;
+  justify-content: center;
+ text-align: center
+}
