@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.upload-image-form{
+  justify-content: center;
+ text-align: center
+}
+
+.upload-form-header{
+  text-align: center
+}

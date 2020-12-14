@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import {Form, Button} from 'react-bootstrap'
+import {Button,Container} from 'react-bootstrap'
+import Card from 'react-bootstrap/Card'
+import Figure from 'react-bootstrap/Figure'
 
 function HarashokuImageUploader() {
     const [fileInputState, setFileInputState] = useState('')
@@ -8,10 +10,10 @@ function HarashokuImageUploader() {
 
     const handleFileInputChange = (e) => {
         const file = e.target.files[0]
+        console.log(file);
+        console.log(e.target);
         previewFile(file)
     }
-
-    
 
     const previewFile = (file) => {
         const reader = new FileReader()
@@ -31,7 +33,7 @@ function HarashokuImageUploader() {
     const uploadImage = async (base64EncodedImage) => {
         console.log(base64EncodedImage);
         try {
-            await fetch('/api/upload', {
+            await fetch('http://206.189.46.22', {
                 method: 'POST',
                 body: JSON.stringify({data: base64EncodedImage}),
                 headers: {'Content-type': 'application/json'}
@@ -44,8 +46,8 @@ function HarashokuImageUploader() {
     return (
     <>
     <div>
-        <h1>Upload your image</h1>
-        <form onSubmit={handleSubmitFile} className='form'>
+        <h1 className='upload-form-header' >Upload your image </h1>
+        <form onSubmit={handleSubmitFile} className='form upload-image-form' >
             <input type="file" 
                 name="image" 
                 onChange={handleFileInputChange} 
@@ -54,10 +56,13 @@ function HarashokuImageUploader() {
             <Button className="btn" type="submit">
             Submit </Button>
         </form>
+        <div>
         {previewSource &&(
-            <img src={previewSource} alt='chosen'
-            style={{height: '400px'}}/>
+           <Card.Img src={previewSource} alt="chosen" />
         )}
+        </div>
+
+
     </div>
     </>
     )
